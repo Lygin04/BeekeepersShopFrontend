@@ -24,7 +24,7 @@ export class AuthService {
 
     return this.http.post<any>(URL + 'signin', body).pipe(
       map((res) => {
-        const token = res.token.substring(7);
+        const token = res.token;
         const user = res.userRole;
         if(token && user){
           this.userStorage.saveToken(token);
