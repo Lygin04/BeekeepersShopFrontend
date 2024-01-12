@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {UserStorageService} from "./services/storage/user-storage.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'BeekeepersShopFrontend';
+  title = 'Магазин пчеловода';
+
+  isCustomerLoggedIn: boolean = UserStorageService.isCustomerLoggedIn();
+  isAdminLoggedIn: boolean = UserStorageService.isAdminLoggedIn();
+
+  constructor(private router: Router) { }
+
+  ngOnInit(): void{
+    this.router.events.subscribe(event => {
+      this.isCustomerLoggedIn = UserStorageService.isCustomerLoggedIn();
+      this.isAdminLoggedIn = UserStorageService.isAdminLoggedIn();
+    })
+  }
+
+  logout(){
+    UserStorageService.signout();
+    this.router.navigateByUrl('signin')
+  }
 }

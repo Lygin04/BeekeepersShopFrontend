@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {MatSnackBar} from "@angular/material/snack-bar";
 import { Router } from '@angular/router';
 import {AuthService} from "../services/auth/auth.service";
+import {UserStorageService} from "../services/storage/user-storage.service";
 
 @Component({
   selector: 'app-signin',
@@ -34,8 +35,12 @@ export class SigninComponent {
 
     this.authService.signin(email, password).subscribe(
       (response) => {
-        this.snackBar.open('Вы вошли в вккаунт.', 'Закрыть', {duration: 5000});
-        this.router.navigateByUrl("/signin")
+        if(UserStorageService.isAdminLoggedIn()){
+          this.router.navigateByUrl('admin/dashboard');
+        }
+        else if(UserStorageService.isCustomerLoggedIn()) {
+          this.router.navigateByUrl('customer/dashboard');
+        }
       },
       (error) => {
         this.snackBar.open('Не удалось войти в аккаунт. Попробуйте снова.', 'Закрыть', {duration: 5000, panelClass: 'error-snackbar'});

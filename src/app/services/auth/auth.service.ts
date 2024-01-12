@@ -19,9 +19,20 @@ export class AuthService {
   }
 
   signin(email: string, password: string): any{
-    //const headers = new HttpHeaders().set('Content-type', 'application/json');
+    const headers = new HttpHeaders().set('Content-type', 'application/json');
     const body = {email, password};
-    console.log(body);
-    return this.http.post<any>(URL + 'signin', body);
+
+    return this.http.post<any>(URL + 'signin', body).pipe(
+      map((res) => {
+        const token = res.token.substring(7);
+        const user = res.userRole;
+        if(token && user){
+          this.userStorage.saveToken(token);
+          this.userStorage.saveUser(user);
+          return true;
+        }
+        return false;
+      })
+    );
   }
 }
