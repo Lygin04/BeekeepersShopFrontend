@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 const TOKEN = 'token';
 const USER = 'user';
+const USERID = 'userId';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,15 @@ export class UserStorageService {
   public saveUser(user): void{
     window.localStorage.removeItem(USER);
     window.localStorage.setItem(USER, user);
+  }
+
+  public saveUserId(userId): void{
+    window.localStorage.removeItem(USERID);
+    window.localStorage.setItem(USERID, userId);
+  }
+
+  static getUserId(): string{
+    return localStorage.getItem(USERID);
   }
 
   static getToken(): string{

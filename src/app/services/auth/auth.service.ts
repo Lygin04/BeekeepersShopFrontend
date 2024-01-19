@@ -26,9 +26,11 @@ export class AuthService {
       map((res) => {
         const token = res.token;
         const user = res.userRole;
+        const userId = res.userId;
         if(token && user){
           this.userStorage.saveToken(token);
           this.userStorage.saveUser(user);
+          this.userStorage.saveUserId(userId);
           return true;
         }
         return false;
