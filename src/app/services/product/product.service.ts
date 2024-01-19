@@ -13,7 +13,14 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   create(product: any): Observable<any>{
+    console.log(product);
     return this.http.post(URL + 'create', product, {
+      headers: this.createAuthorizationHeader()
+    });
+  }
+
+  getAll(): Observable<any>{
+    return this.http.get(URL + 'all', {
       headers: this.createAuthorizationHeader()
     });
   }

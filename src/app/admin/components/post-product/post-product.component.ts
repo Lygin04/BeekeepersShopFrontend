@@ -56,13 +56,14 @@ export class PostProductComponent {
 
   addProduct(){
     if(this.productForm.valid){
-      const formData: FormData = new FormData();
+      let formData: FormData = new FormData();
       formData.append('img', this.selectedFile);
       formData.append('categoryId', this.productForm.get('categoryId').value);
       formData.append('name', this.productForm.get('name').value);
       formData.append('description', this.productForm.get('description').value);
       formData.append('price', this.productForm.get('price').value);
 
+      console.log(this.selectedFile);
       this.productService.create(formData).subscribe((res) =>{
         if(res.id != null){
           this.snackBar.open('Продукт создан успешно.', 'Закрыть', {duration: 5000});
