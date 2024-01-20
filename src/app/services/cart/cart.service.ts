@@ -29,6 +29,13 @@ export class CartService {
     });
   }
 
+  applyCoupon(code:any): Observable<any>{
+    const userId = UserStorageService.getUserId();
+    return this.http.get(URL + `coupon/${userId}/${code}`, {
+      headers: this.createAuthorizationHeader()
+    });
+  }
+
   createAuthorizationHeader(): HttpHeaders{
     return new HttpHeaders().set(
       'Authorization', 'Bearer ' + UserStorageService.getToken()

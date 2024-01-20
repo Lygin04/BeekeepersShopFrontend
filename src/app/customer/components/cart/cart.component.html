@@ -27,15 +27,31 @@
     </div>
 
     <div class="total-price">
-      Total Amount: {{order.totalAmount | currency}}
+      Общая сумма: {{order.totalAmount | currency}}
     </div>
 
     <div class="total-price">
-      Amount: {{order.amount | currency}}
+      Сумма: {{order.amount | currency}}
+    </div>
+
+    <div class="total-price" *ngIf="order.couponName != null">
+      Примененый купон: {{order.couponName}}
     </div>
     <div>
-      <button mat-raised-button color="primary">Place Order</button>
+      <button mat-raised-button color="primary">Заказать</button>
     </div>
+  </div>
+
+  <div class="container" *ngIf="order.couponName == null">
+    <form [formGroup]="couponForm" (ngSubmit)="applyCoupon()">
+      <mat-form-field>
+        <mat-label>Код</mat-label>
+        <input matInput type="text" placeholder="Код" formControlName="code">
+        <mat-error *ngIf="couponForm.get('code')?.hasError('required')">Поле не заполнено</mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Применить купон</button>
+    </form>
   </div>
 </div>
 

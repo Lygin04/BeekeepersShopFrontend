@@ -1,19 +1,19 @@
 <div class="container">
-  <h2>Add Category</h2>
+  <h2>Создание категории</h2>
   <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
 
     <mat-form-field appearance="outline" class="form-field">
-      <mat-label>Name</mat-label>
-      <input matInput type="text" placeholder="Name" formControlName="name" required>
-      <mat-error *ngIf="categoryForm.get('name')?.hasError('required')">This input is required</mat-error>
+      <mat-label>Название</mat-label>
+      <input matInput type="text" placeholder="Название" formControlName="name" required>
+      <mat-error *ngIf="categoryForm.get('name')?.hasError('required')">Поле не введено</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="form-field">
-      <mat-label>Description</mat-label>
-      <input matInput type="text" placeholder="Description" formControlName="description">
-      <mat-error *ngIf="categoryForm.get('description')?.hasError('required')">This input is required</mat-error>
+      <mat-label>Описание</mat-label>
+      <input matInput type="text" placeholder="Описание" formControlName="description">
+      <mat-error *ngIf="categoryForm.get('description')?.hasError('required')">Поле не введено</mat-error>
     </mat-form-field>
 
-    <button mat-raised-button color="primary" type="submit">Add Category</button>
+    <button mat-raised-button color="primary" type="submit">Создать категорию</button>
   </form>
 </div>

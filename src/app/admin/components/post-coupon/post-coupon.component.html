@@ -1,0 +1,33 @@
+<div class="container">
+  <h2>Создать купон</h2>
+  <form [formGroup]="couponForm" (ngSubmit)="addCoupon()">
+    <mat-form-field>
+      <mat-label>Название</mat-label>
+      <input matInput type="text" placeholder="Название" formControlName="name">
+      <mat-error *ngIf="couponForm.get('name')?.hasError('required')">Поле не заполнено!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Код</mat-label>
+      <input matInput type="text" placeholder="Код" formControlName="code">
+      <mat-error *ngIf="couponForm.get('code')?.hasError('required')">Поле не заполнено!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Скидка %</mat-label>
+      <input matInput type="text" placeholder="Скидка" formControlName="discount">
+      <mat-error *ngIf="couponForm.get('discount')?.hasError('required')">Поле не заполнено!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Конец скидки</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="expirationDate">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="couponForm.get('expirationDate')?.hasError('required')">Поле не заполнено!</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" >Создать купон</button>
+  </form>
+</div>

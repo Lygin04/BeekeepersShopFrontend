@@ -48,13 +48,14 @@ export class DashboardComponent {
   deleteProduct(id: any){
     this.productService.delete(id).subscribe(res =>
     {
+      this.getAllProducts();
       if(res.body == null){
         this.snackBar.open('Товар удалён.', 'Закрыть', {duration: 5000});
       }
       else {
         this.snackBar.open('Не удалось удалить товар. Попробуйте снова.', 'Закрыть', {duration: 5000, panelClass: 'error-snackbar'});
       }
-      this.getAllProducts();
+      //this.getAllProducts();
     });
   }
 }

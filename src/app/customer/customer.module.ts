@@ -16,11 +16,13 @@ import {DemoAngularMaterialModule} from "../DemoAngularMaterialModule";
 import { CartComponent } from './components/cart/cart.component';
 
 
+
 @NgModule({
   declarations: [
     CustomerComponent,
     DashboardComponent,
-    CartComponent
+    CartComponent,
+
   ],
     imports: [
         CommonModule,

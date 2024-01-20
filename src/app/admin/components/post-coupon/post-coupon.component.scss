@@ -1,0 +1,51 @@
+/* Стиль для контейнера формы */
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Стиль для заголовка формы */
+h2 {
+  color: #3498db;
+  text-align: center;
+}
+
+/* Стиль для формы и ее элементов */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Стиль для полей ввода */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Стиль для кнопки создания купона */
+button {
+  width: 100%;
+}
+
+/* Стиль для ошибок валидации */
+mat-error {
+  color: #e74c3c; /* Цвет ошибки */
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* Стиль для подсказки ввода даты */
+mat-hint {
+  font-size: 12px;
+}
+
+/* Стиль для иконки календаря */
+.mat-datepicker-toggle {
+  color: #3498db;
+}
+
+/* Стиль для иконки кнопки создания купона */
+button[color="primary"] {
+  background-color: #3498db;
+  color: #ffffff;
+}
